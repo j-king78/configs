@@ -1,0 +1,9 @@
+#Speed up Chromium Mouse Wheel Speed
+"^chromium$"
+	None, Up, Button4, 4
+	None, Down, Button5, 4
+
+#Speed up Brave Mouse Wheel Speed
+"^brave-browser$"
+	None, Up, Button4, 4
+	None, Down, Button5, 4
