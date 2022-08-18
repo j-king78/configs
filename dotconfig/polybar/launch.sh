@@ -90,6 +90,42 @@ case $desktop in
     # fi
     ;;
 
+    worm|/usr/share/xsessions/worm)
+    if type "xrandr" > /dev/null; then
+      for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+        MONITOR=$m polybar --reload mainbar-worm -c ~/.config/polybar/config &
+      done
+    else
+    polybar --reload mainbar-worm -c ~/.config/polybar/config &
+    fi
+    # second polybar at bottom
+    # if type "xrandr" > /dev/null; then
+    #   for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+    #     MONITOR=$m polybar --reload mainbar-worm-extra -c ~/.config/polybar/config &
+    #   done
+    # else
+    # polybar --reload mainbar-worm-extra -c ~/.config/polybar/config &
+    # fi
+    ;;
+
+    berry|/usr/share/xsessions/berry)
+    if type "xrandr" > /dev/null; then
+      for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+        MONITOR=$m polybar --reload mainbar-berry -c ~/.config/polybar/config &
+      done
+    else
+    polybar --reload mainbar-berry -c ~/.config/polybar/config &
+    fi
+    # second polybar at bottom
+    # if type "xrandr" > /dev/null; then
+    #   for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+    #     MONITOR=$m polybar --reload mainbar-berry-extra -c ~/.config/polybar/config &
+    #   done
+    # else
+    # polybar --reload mainbar-berry-extra -c ~/.config/polybar/config &
+    # fi
+    ;;
+
     xmonad|/usr/share/xsessions/xmonad)
     if [ $count = 1 ]; then
       m=$(xrandr --query | grep " connected" | cut -d" " -f1)
@@ -159,4 +195,41 @@ case $desktop in
      # fi
 
     ;;
+
+    wmderland|/usr/share/xsessions/wmderland)
+    if type "xrandr" > /dev/null; then
+      for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+        MONITOR=$m polybar --reload mainbar-wmderland -c ~/.config/polybar/config &
+      done
+    else
+    polybar --reload mainbar-wmderland -c ~/.config/polybar/config &
+    fi
+    # second polybar at bottom
+    # if type "xrandr" > /dev/null; then
+    #   for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+    #     MONITOR=$m polybar --reload mainbar-wmderland-extra -c ~/.config/polybar/config &
+    #   done
+    # else
+    # polybar --reload mainbar-wmderland-extra -c ~/.config/polybar/config &
+    # fi
+    ;;
+
+    leftwm|/usr/share/xsessions/leftwm)
+    if type "xrandr" > /dev/null; then
+      for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+        MONITOR=$m polybar --reload mainbar-leftwm -c ~/.config/polybar/config &
+      done
+    else
+    polybar --reload mainbar-leftwm -c ~/.config/polybar/config &
+    fi
+    # second polybar at bottom
+    # if type "xrandr" > /dev/null; then
+    #   for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+    #     MONITOR=$m polybar --reload mainbar-leftwm-extra -c ~/.config/polybar/config &
+    #   done
+    # else
+    # polybar --reload mainbar-leftwm-extra -c ~/.config/polybar/config &
+    # fi
+    ;;
+
 esac

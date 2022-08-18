@@ -16,9 +16,7 @@ function run {
 #xrandr --output DP2 --primary --mode 1920x1080 --rate 60.00 --output LVDS1 --off &
 #xrandr --output LVDS1 --mode 1366x768 --output DP3 --mode 1920x1080 --right-of LVDS1
 #xrandr --output HDMI2 --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output VIRTUAL1 --off
-#multi-monitor xrandr --output DP-0 --off --output DP-1 --off --output HDMI-0 --off --output DP-2 --primary --mode 2560x1080 --rate 120n.00 --pos 2560x180 --output DP-3 --off --output DP-4 --off --output DP-5 --off --output USB-C-0 --mode 2560x1440 --pos 0x0 &
 xrandr --output DP-0 --off --output DP-1 --off --output HDMI-0 --off --output DP-4 --primary --mode 2560x1080 --rate 120n.00 --pos 2560x180 --output DP-3 --off --output DP-2 --off --output DP-5 --off --output USB-C-0 --off &
-
 
 (sleep 2; run $HOME/.config/polybar/launch.sh) &
 
@@ -32,8 +30,8 @@ xsetroot -cursor_name left_ptr &
 run dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
 
 #Some ways to set your wallpaper besides variety or nitrogen
-feh --bg-fill /home/jking/.config/variety/Favorites/TLyden-MikeNagleRally-6747.jpg &
-
+feh --bg-fill /usr/share/backgrounds/archlinux/arch-wallpaper.jpg &
+feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg &
 #start the conky to learn the shortcuts
 #(conky -c $HOME/.xmonad/scripts/system-overview) &
 
