@@ -12,6 +12,7 @@ import XMonad.Config.Azerty
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Actions.SpawnOn
 import XMonad.Util.EZConfig (additionalKeys, additionalMouseBindings)
+import qualified XMonad.Util.Hacks as Hacks
 import XMonad.Actions.CycleWS
 import XMonad.Hooks.UrgencyHook
 import qualified Codec.Binary.UTF8.String as UTF8
@@ -19,7 +20,7 @@ import qualified Codec.Binary.UTF8.String as UTF8
 import XMonad.Layout.Spacing
 import XMonad.Layout.Gaps
 import XMonad.Layout.ResizableTile
----import XMonad.Layout.NoBorders
+import XMonad.Layout.NoBorders (smartBorders)
 import XMonad.Layout.Fullscreen (fullscreenFull)
 import XMonad.Layout.Cross(simpleCross)
 import XMonad.Layout.Spiral(spiral)
@@ -27,7 +28,6 @@ import XMonad.Layout.ThreeColumns
 import XMonad.Layout.MultiToggle
 import XMonad.Layout.MultiToggle.Instances
 import XMonad.Layout.IndependentScreens
-
 
 import XMonad.Layout.CenteredMaster(centerMaster)
 
@@ -38,7 +38,6 @@ import qualified Data.ByteString as B
 import Control.Monad (liftM2)
 import qualified DBus as D
 import qualified DBus.Client as D
-
 
 myStartupHook = do
     spawn "$HOME/.xmonad/scripts/autostart.sh"
@@ -59,7 +58,7 @@ winType  = "#c678dd"
 myModMask = mod4Mask
 encodeCChar = map fromIntegral . B.unpack
 myFocusFollowsMouse = True
-myBorderWidth = 2
+myBorderWidth = 0
 myWorkspaces    = ["\61612","\61705","\61899","\62150","\61502","\61501","7","8","9","10"]
 --myWorkspaces    = ["1","2","3","4","5","6","7","8","9","10"]
 --myWorkspaces    = ["I","II","III","IV","V","VI","VII","VIII","IX","X"]
@@ -73,6 +72,7 @@ myManageHook = composeAll . concat $
     , [title =? t --> doFloat | t <- myTFloats]
     , [resource =? r --> doFloat | r <- myRFloats]
     , [resource =? i --> doIgnore | i <- myIgnores]
+    , [className =? c --> doFullFloat | c <- myFFloats]
     -- , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "\61612" | x <- my1Shifts]
     -- , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "\61899" | x <- my2Shifts]
     -- , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "\61947" | x <- my3Shifts]
@@ -90,6 +90,7 @@ myManageHook = composeAll . concat $
     myTFloats = ["Downloads", "Save As..."]
     myRFloats = []
     myIgnores = ["desktop_window"]
+    myFFloats = ["steam_app_1151640", "steam_app_1332010", "steam_app_753640", "steam_app_1966350"]
     -- my1Shifts = ["Chromium", "Vivaldi-stable", "Firefox"]
     -- my2Shifts = []
     -- my3Shifts = ["Inkscape"]
@@ -104,7 +105,11 @@ myManageHook = composeAll . concat $
 
 
 
-myLayout = spacing 6 $ avoidStruts $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) $ tiled ||| Mirror tiled ||| spiral (6/7)  ||| ThreeColMid 1 (3/100) (1/2) ||| Full
+myLayout = spacing 6 $ avoidStruts $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) $ tiled 
+                                                                            ||| Mirror tiled 
+                                                                            ||| spiral (6/7) 
+                                                                            ||| ThreeColMid 1 (3/100) (1/2) 
+                                                                            ||| smartBorders Full 
     where
         tiled = Tall nmaster delta tiled_ratio
         nmaster = 1
@@ -133,6 +138,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- SUPER + FUNCTION KEYS
 
   [ ((modMask, xK_e), spawn $ "atom" )
+  , ((modMask, xK_b), sendMessage ToggleStruts)
   , ((modMask, xK_c), spawn $ "conky-toggle" )
   , ((modMask, xK_f), sendMessage $ Toggle NBFULL)
   , ((modMask, xK_h), spawn $ "urxvt 'htop task manager' -e htop" )
@@ -144,7 +150,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask, xK_t), spawn $ "code" )
   , ((modMask, xK_v), spawn $ "pavucontrol" )
   , ((modMask, xK_y), spawn $ "polybar-msg cmd toggle" )
-  , ((modMask, xK_w), spawn $ "librewolf")
+  , ((modMask, xK_w), spawn $ "brave")
   , ((modMask, xK_x), spawn $ "archlinux-logout" )
   , ((modMask, xK_Escape), spawn $ "xkill" )
   , ((modMask, xK_Return), spawn $ "alacritty" )
@@ -352,6 +358,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       | (key, sc) <- zip [xK_Left, xK_Right] [0..]
       , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
+-- windowedFullScreenFixEventHook :: Event -> X All
+
 main :: IO ()
 main = do
 
@@ -371,7 +379,7 @@ main = do
             --myBaseConfig { keys = belgianKeys <+> keys belgianConfig }
 
                 {startupHook = myStartupHook
-, layoutHook = gaps [(U,35), (D,5), (R,5), (L,5)] $ myLayout ||| layoutHook myBaseConfig
+, layoutHook = myLayout ||| layoutHook myBaseConfig
 , manageHook = manageSpawn <+> myManageHook <+> manageHook myBaseConfig
 , modMask = myModMask
 , borderWidth = myBorderWidth
