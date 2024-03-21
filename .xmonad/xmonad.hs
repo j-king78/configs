@@ -22,7 +22,7 @@ import XMonad.Layout.Gaps
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.NoBorders (smartBorders)
 import XMonad.Layout.Fullscreen (fullscreenFull)
-import XMonad.Layout.Cross(simpleCross)
+-- import XMonad.Layout.Cross(simpleCross)
 import XMonad.Layout.Spiral(spiral)
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.MultiToggle
@@ -45,7 +45,7 @@ myStartupHook = do
 
 -- colours
 normBord = "#4c566a"
-focdBord = "#5e81ac"
+focdBord = "#cccccc"
 fore     = "#DEE3E0"
 back     = "#282c34"
 winType  = "#c678dd"
@@ -58,8 +58,8 @@ winType  = "#c678dd"
 myModMask = mod4Mask
 encodeCChar = map fromIntegral . B.unpack
 myFocusFollowsMouse = True
-myBorderWidth = 0
-myWorkspaces    = ["\61612","\61705","\61899","\62150","\61502","\61501","7","8","9","10"]
+myBorderWidth = 2
+myWorkspaces    = ["1","2","3","\62748","\61664","\61747","\61485","\62003"]
 --myWorkspaces    = ["1","2","3","4","5","6","7","8","9","10"]
 --myWorkspaces    = ["I","II","III","IV","V","VI","VII","VIII","IX","X"]
 
@@ -157,10 +157,10 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask, xK_F1), spawn $ "vivaldi-stable" )
   , ((modMask, xK_F2), spawn $ "atom" )
   , ((modMask, xK_F3), spawn $ "inkscape" )
-  , ((modMask, xK_F4), spawn $ "gimp" )
-  , ((modMask, xK_F5), spawn $ "meld" )
-  , ((modMask, xK_F6), spawn $ "vlc --video-on-top" )
-  , ((modMask, xK_F7), spawn $ "virtualbox" )
+  , ((modMask, xK_F4), spawn $ "remmina -c '/home/jking/.local/share/remmina/seitel-systems_rdp_lan-ssl-jk-win11_192-168-86-24.remmina'" )
+  , ((modMask, xK_F5), spawn $ "brave --app='https://outlook.office.com/mail'" )
+  , ((modMask, xK_F6), spawn $ "brave --app='https://outlook.office.com/calendar/view/day'" )
+  , ((modMask, xK_F7), spawn $ "obsidian" )
   , ((modMask, xK_F8), spawn $ "thunar" )
   , ((modMask, xK_F9), spawn $ "evolution" )
   , ((modMask, xK_F10), spawn $ "spotify" )
@@ -281,7 +281,10 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((mod1Mask, xK_Tab), nextWS)
 
   --Focus selected desktop
-  , ((modMask, xK_Tab), nextWS)
+  -- , ((modMask, xK_Tab), nextWS)
+
+  --Previous selected desktop
+  , ((mod1Mask .|. shiftMask, xK_Tab), prevWS)
 
   --Focus selected desktop
   , ((controlMask .|. mod1Mask , xK_Left ), prevWS)
@@ -337,7 +340,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
   --Keyboard layouts
   --qwerty users use this line
-   | (i, k) <- zip (XMonad.workspaces conf) [xK_1,xK_2,xK_3,xK_4,xK_5,xK_6,xK_7,xK_8,xK_9,xK_0]
+   | (i, k) <- zip (XMonad.workspaces conf) [xK_1,xK_2,xK_3,xK_4,xK_5,xK_6,xK_7,xK_8]
 
   --French Azerty users use this line
   -- | (i, k) <- zip (XMonad.workspaces conf) [xK_ampersand, xK_eacute, xK_quotedbl, xK_apostrophe, xK_parenleft, xK_minus, xK_egrave, xK_underscore, xK_ccedilla , xK_agrave]
