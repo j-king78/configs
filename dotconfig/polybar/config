@@ -38,8 +38,8 @@ format-margin =
 format-offset =
 
 [colors]
-; Nord theme ============
-background = #C82F343F
+;My Linux for Work Theme ============
+background = #aa000000
 foreground = #f3f4f5
 foreground-active = #6790EB
 occupied = #cccccc
@@ -49,6 +49,18 @@ alert = #d08770
 volume-min = #a3be8c
 volume-med = #ebcb8b
 volume-max = #bf616a
+; =======================
+; Nord theme ============
+; background = #C82F343F
+; foreground = #f3f4f5
+; foreground-active = #6790EB
+; occupied = #cccccc
+; occupied-active = #b3c7f5
+; active = #5e81ac
+; alert = #d08770
+; volume-min = #a3be8c
+; volume-med = #ebcb8b
+; volume-max = #bf616a
 ; =======================
 
 ; Gotham theme ==========
@@ -919,10 +931,10 @@ monitor = ${env:MONITOR}
 monitor-strict = false
 override-redirect = false
 width = 100%
-height = 30
+height = 25
 ;offset-x = 1%
 ;offset-y = 1%
-radius = 8.0
+radius = 0
 fixed-center = true
 bottom = false
 separator = |
@@ -934,11 +946,11 @@ line-size = 2
 line-color = #f00
 
 ;border-size = 2
-border-left-size = 800
-border-right-size = 800
-border-top-size = 5
+border-left-size = 0
+border-right-size = 0
+border-top-size = 0
 border-bottom-size = 0
-;border-color = #00000000
+border-color = ${colors.background}
 
 padding-left = 5
 padding-right = 80
@@ -951,14 +963,14 @@ module-margin-right = 3
 enable-ipc = true
 
 ;https://github.com/jaagr/polybar/wiki/Fonts
-font-0 = "Noto Sans:size=10;0"
-font-1 = "FontAwesome:size=13;0"
+font-0 = "Noto Sans:size=10:weight=bold;0"
+font-1 = "Font Awesome 6 Free Solid:size=11;1"
 font-2 = "Noto Sans:size=10;0"
 font-3 = "Noto Sans Mono:size=10;0"
-font-4 = "FontAwesome5Brands:size=13;0"
+font-4 = "Font Awesome 6 Brands:size=11;0"
 
-modules-left = ewmh
-modules-center = date
+modules-left = date
+modules-center = ewmh
 ;modules-right = pavolume memory2 cpu2 date
 
 tray-detached = true
@@ -983,7 +995,7 @@ monitor = ${env:MONITOR}
 monitor-strict = false
 override-redirect = false
 width = 100%
-height = 30
+height = 25
 ;offset-x = 1%
 ;offset-y = 1%
 radius = 0.0
