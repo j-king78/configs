@@ -58,8 +58,8 @@ winType  = "#c678dd"
 myModMask = mod4Mask
 encodeCChar = map fromIntegral . B.unpack
 myFocusFollowsMouse = True
-myBorderWidth = 2
-myWorkspaces    = ["1","2","3","\62748","\61664","\61747","\61485","\62003"]
+myBorderWidth = 0
+myWorkspaces    = ["\62056","\57351","\61728","\62748","\61664","\61747","\61485","\62003"]
 --myWorkspaces    = ["1","2","3","4","5","6","7","8","9","10"]
 --myWorkspaces    = ["I","II","III","IV","V","VI","VII","VIII","IX","X"]
 
@@ -90,7 +90,7 @@ myManageHook = composeAll . concat $
     myTFloats = ["Downloads", "Save As..."]
     myRFloats = []
     myIgnores = ["desktop_window"]
-    myFFloats = ["steam_app_1151640", "steam_app_1332010", "steam_app_753640", "steam_app_1966350"]
+    myFFloats = ["steam_app_1086940", "steam_app_1151640", "steam_app_1332010", "steam_app_753640", "steam_app_1966350", "virt-manager"]
     -- my1Shifts = ["Chromium", "Vivaldi-stable", "Firefox"]
     -- my2Shifts = []
     -- my3Shifts = ["Inkscape"]
@@ -157,7 +157,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask, xK_F1), spawn $ "vivaldi-stable" )
   , ((modMask, xK_F2), spawn $ "atom" )
   , ((modMask, xK_F3), spawn $ "inkscape" )
-  , ((modMask, xK_F4), spawn $ "remmina -c '/home/jking/.local/share/remmina/seitel-systems_rdp_lan-ssl-jk-win11_192-168-86-24.remmina'" )
+  , ((modMask, xK_F4), spawn $ "remmina -c '/home/jking/.local/share/remmina/seitel-systems_rdp_lan-ssl-jk-win11_192-168-86-176.remmina'" )
   , ((modMask, xK_F5), spawn $ "brave --app='https://outlook.office.com/mail'" )
   , ((modMask, xK_F6), spawn $ "brave --app='https://outlook.office.com/calendar/view/day'" )
   , ((modMask, xK_F7), spawn $ "obsidian" )
