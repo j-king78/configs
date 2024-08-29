@@ -59,7 +59,8 @@ myModMask = mod4Mask
 encodeCChar = map fromIntegral . B.unpack
 myFocusFollowsMouse = True
 myBorderWidth = 0
-myWorkspaces    = ["\62056","\57351","\61728","\62748","\61664","\61747","\61485","\62003"]
+--Unicode font from fontawesome website. Add an x to the beginning.
+myWorkspaces    = ["\62056","\xf64f","\xf120","\62748","\61664","\61747","\61485","\62003"]
 --myWorkspaces    = ["1","2","3","4","5","6","7","8","9","10"]
 --myWorkspaces    = ["I","II","III","IV","V","VI","VII","VIII","IX","X"]
 
@@ -86,7 +87,7 @@ myManageHook = composeAll . concat $
     ]
     where
     -- doShiftAndGo = doF . liftM2 (.) W.greedyView W.shift
-    myCFloats = ["Arandr", "Arcolinux-calamares-tool.py", "Archlinux-tweak-tool.py", "Arcolinux-welcome-app.py", "Galculator", "feh", "mpv", "Xfce4-terminal"]
+    myCFloats = ["Qalculate-gtk","qpaeq","Arandr", "Arcolinux-calamares-tool.py", "Archlinux-tweak-tool.py", "Arcolinux-welcome-app.py", "Galculator", "feh", "mpv", "Xfce4-terminal"]
     myTFloats = ["Downloads", "Save As..."]
     myRFloats = []
     myIgnores = ["desktop_window"]
@@ -157,7 +158,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask, xK_F1), spawn $ "vivaldi-stable" )
   , ((modMask, xK_F2), spawn $ "atom" )
   , ((modMask, xK_F3), spawn $ "inkscape" )
-  , ((modMask, xK_F4), spawn $ "remmina -c '/home/jking/.local/share/remmina/seitel-systems_rdp_lan-ssl-jk-win11_192-168-86-176.remmina'" )
+  , ((modMask, xK_F4), spawn $ "remmina -c '/home/jking/.local/share/remmina/seitel-systems_rdp_lan-ssl-jk-win11_192-168-86-40.remmina'" )
   , ((modMask, xK_F5), spawn $ "brave --app='https://outlook.office.com/mail'" )
   , ((modMask, xK_F6), spawn $ "brave --app='https://outlook.office.com/calendar/view/day'" )
   , ((modMask, xK_F7), spawn $ "obsidian" )
@@ -171,7 +172,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((0, xK_F12), spawn $ "xfce4-terminal --drop-down" )
 
   -- SUPER + SHIFT KEYS
-
+  , ((modMask .|. shiftMask , xK_w ), spawn $ "brave --incognito")
   , ((modMask .|. shiftMask , xK_Return ), spawn $ "thunar")
   , ((modMask .|. shiftMask , xK_d ), spawn $ "dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'")
   , ((modMask .|. shiftMask , xK_r ), spawn $ "xmonad --recompile && xmonad --restart")
